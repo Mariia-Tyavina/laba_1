@@ -1,6 +1,7 @@
 import time
 import math
 
+
 ESC = "\x1b"
 CSI = f"{ESC}["
 res = f"{CSI}0m"
@@ -9,10 +10,9 @@ BLACK = "\u001b[40m"
 RED = '\u001b[41m'
 
 
-def poland_flag(width=20, height=8):
-    num = height // 2
+def poland_flag(width = 20, height = 8):
     for y in range(1, height + 1):
-        if y < height // 2:
+        if y <= height // 2:
             print(f"{WHITE}{" " * width}")
         else:
             print(f"{RED}{" " * width}")
@@ -22,7 +22,7 @@ def poland_flag(width=20, height=8):
 poland_flag()
 
 
-def draw(width=11, n=4):
+def draw(width = 11, n = 4):
     line = " "
     center = width // 2
     center2 = width // 4
@@ -31,11 +31,11 @@ def draw(width=11, n=4):
         if i == 1 or i == 3 or i == 5:
             print((f"{WHITE}{line*width}") * n)
         if i == 2:
-            print((f"{res}{line*center}{WHITE}{line*1}{res}{line*center}") * n)
+            print((f"{res}{line * center}{WHITE}{line * 1}{res}{line * center}") * n)
         if i == 4:
-            print((f"{res}{line*center2}{WHITE}"
-                f'{line*1}{res}{line*center2}{res}{line*1}'
-                f'{res}{line*center2}{WHITE}{line*1}{res}{line*center2}')* n)
+            print((f"{res}{line * center2}{WHITE}"
+                f'{line * 1}{res}{line * center2}{res}{line * 1}'
+                f'{res}{line * center2}{WHITE}{line * 1}{res}{line * center2}') * n)
     print(f"{res}")
 
 
@@ -43,43 +43,41 @@ draw()
 
 
 def graphic():
-    width = 49
-    height = 9
-    for i in range(height,0,-1):
-        if i!=1:
-            print(f'{i}{CSI}48;5;{0}m{"|"}{res}{" "*(i**2)*2}{CSI}48;5;{5}m{"*"}{res}')
+    WIDTH = 49
+    HEIGHT = 9
+    for i in range(HEIGHT, 0, -1):
+        if i != 1:
+            print(f'{i}{CSI}48;5;{0}m{"|"}{res}{" "*(i** 2)* 2}{CSI}48;5;{5}m{"*"}{res}')
             print(f'{" "}{CSI}48;5;{0}m{"|"}{res}')
         else:
             print(f'{i}{CSI}48;5;{0}m{"|"}{res}{" "*i**2}{CSI}48;5;{5}m{"*"}{res}')
-            print(f'{" "}{CSI}48;5;{0}m{"|"}{"__"*width}{res}')
+            print(f'{" "}{CSI}48;5;{0}m{"|"}{"__"*WIDTH}{res}')
     print(f'{res}', end = '')
-    for x in range(0,width+1):
+    for x in range(0, WIDTH+1):
         print(f'{" "}{x}', end = '')
-
+    print(" ")
 
 
 graphic()
 
 
 def diagramma():   
-    f = open("C:/Users/Lenovo/Downloads/sequence.txt")
-    chisla = []
-    sr1 = 0
-    sr2 = 0
+    f = open("sequence.txt")
+    numbers = []
+    avg1 = 0
+    avg2 = 0
     for line in f.readlines():
-        chisla.append(abs(float(line)))
+        numbers .append(abs(float(line)))
     for x in range(0,125):
-        sr1 += chisla[x]
+        avg1 += numbers[x]
     for y in range(249,124,-1):
-        sr2 += chisla[y]
+        avg2 += numbers[y]
 
-    sr1 = sr1 / 125
-    sr2 = sr2 / 125
-    persent1 = (sr1/(sr1+sr2))*100
-    persent2 = (sr2/(sr1+sr2))*100
+    avg1 = avg1 / 125
+    avg2 = avg2 / 125
     f.close()
 
-    for i in range(100,0,-1):
+    for i in range(100, 0, -1):
         if 100 > i > 51:
             print(f'{i}{CSI}48;5;{0}m{" |"}{BLACK}')
         if i == 100:
